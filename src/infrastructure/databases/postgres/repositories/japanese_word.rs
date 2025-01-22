@@ -23,6 +23,14 @@ impl JapaneseWordDieselRepository {
     }
 }
 
+impl Clone for JapaneseWordDieselRepository {
+    fn clone(&self) -> Self {
+        Self {
+            db_pool: Arc::clone(&self.db_pool),
+        }
+    }
+}
+
 #[async_trait]
 impl JapaneseWordRepository for JapaneseWordDieselRepository {
     async fn find_by_kanji(&self, kanji: String) -> Result<JapaneseWord> {
