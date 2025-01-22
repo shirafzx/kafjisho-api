@@ -1,1 +1,2 @@
-pub mod default_routers;
+pub mod default_router;
+pub mod japanese_word_router;

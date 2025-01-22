@@ -403,6 +403,7 @@ dependencies = [
  "pq-sys",
  "r2d2",
  "serde_json",
+ "uuid",
 ]
 
 [[package]]
@@ -1442,6 +1443,7 @@ checksum = "b913a3b5fe84142e269d63cc62b64319ccaf89b748fc31fe025177f767a756c4"
 dependencies = [
  "getrandom",
  "rand",
+ "serde",
  "uuid-macro-internal",
 ]
 

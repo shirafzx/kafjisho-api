@@ -12,16 +12,20 @@ use tower_http::{
 use tracing::info;
 
 use crate::{
-    config::config_model::DotEnvyConfig,
+    api::axum_http::routers::japanese_word_router, config::config_model::DotEnvyConfig,
     infrastructure::databases::postgres::postgres_connection::PgPool,
 };
 
-use super::routers::default_routers;
+use super::routers::default_router;
 
 pub async fn start(config: Arc<DotEnvyConfig>, db_pool: Arc<PgPool>) -> Result<()> {
     let app = Router::new()
-        .fallback(default_routers::not_found)
-        .route("/health-check", get(default_routers::health_check))
+        .fallback(default_router::not_found)
+        .nest(
+            "/japanese-word",
+            japanese_word_router::routes(Arc::clone(&db_pool)),
+        )
+        .route("/health-check", get(default_router::health_check))
         .layer(TimeoutLayer::new(Duration::from_secs(
             config.server.timeout,
         )))

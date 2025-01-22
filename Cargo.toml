@@ -20,6 +20,7 @@ diesel = { version = "2.2.6", features = [
     "serde_json",
     "chrono",
     "r2d2",
+    "uuid",
 ] }
 dotenvy = "0.15.7"
 anyhow = "1.0.95"
@@ -30,4 +31,5 @@ uuid = { version = "1.11.1", features = [
     "v4",                
     "fast-rng",         
     "macro-diagnostics",
+    "serde",
 ] }
