@@ -1,7 +1,7 @@
 // @generated automatically by Diesel CLI.
 
 diesel::table! {
-    japanese_words (id) {
+    jp_words (id) {
         id -> Uuid,
         #[max_length = 255]
         kanji -> Nullable<Varchar>,

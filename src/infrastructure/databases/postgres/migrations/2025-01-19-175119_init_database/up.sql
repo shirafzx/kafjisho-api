@@ -1,5 +1,5 @@
 -- Your SQL goes here
-CREATE TABLE japanese_words (
+CREATE TABLE jp_words (
     id UUID PRIMARY KEY,
     kanji VARCHAR(255) UNIQUE,
     reading VARCHAR(255),

@@ -8,8 +8,7 @@ use crate::{
         models::japanese_word::JapaneseWord, repositories::japanese_word::JapaneseWordRepository,
     },
     infrastructure::databases::postgres::{
-        models::japanese_word::JapaneseWordDiesel, postgres_connection::PgPool,
-        schema::japanese_words,
+        models::japanese_word::JapaneseWordDiesel, postgres_connection::PgPool, schema::jp_words,
     },
 };
 
@@ -35,8 +34,8 @@ impl Clone for JapaneseWordDieselRepository {
 impl JapaneseWordRepository for JapaneseWordDieselRepository {
     async fn find_by_kanji(&self, kanji: String) -> Result<JapaneseWord> {
         let mut conn = Arc::clone(&self.db_pool).get()?;
-        let result = japanese_words::table
-            .filter(japanese_words::kanji.eq(kanji))
+        let result = jp_words::table
+            .filter(jp_words::kanji.eq(kanji))
             .select(JapaneseWordDiesel::as_select())
             .first::<JapaneseWordDiesel>(&mut conn)
             .map(|v| -> JapaneseWord { v.into() })?;

@@ -1,6 +1,6 @@
 use crate::{
     domain::models::japanese_word::JapaneseWord,
-    infrastructure::databases::postgres::schema::japanese_words,
+    infrastructure::databases::postgres::schema::jp_words,
 };
 
 use chrono::NaiveDateTime;
@@ -8,7 +8,7 @@ use diesel::prelude::*;
 use uuid::Uuid;
 
 #[derive(Debug, Clone, Selectable, Queryable, Identifiable)]
-#[diesel(table_name = japanese_words)]
+#[diesel(table_name = jp_words)]
 pub struct JapaneseWordDiesel {
     pub id: Uuid,
     pub kanji: Option<String>,
