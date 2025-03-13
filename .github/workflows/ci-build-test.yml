@@ -1,11 +1,11 @@
-name: ⚙️ [custom] build and deploy test
+name: ⚙️ [custom] build and test
 
 on:
   push:
     branches: [develop, main]
-  pull_request:
-    # branches: ["develop", "main"]
-    # types: [opened, synchronize, reopened]
+  # pull_request:
+  # branches: ["develop", "main"]
+  # types: [opened, synchronize, reopened]
   workflow_dispatch:
 
 env:
@@ -18,7 +18,7 @@ env:
   JWT_REFRESH_SECRET: ${{ secrets.JWT_REFRESH_SECRET }}
 
 jobs:
-  build:
+  build and test:
     runs-on: ubuntu-latest
 
     steps:
