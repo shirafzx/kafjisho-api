@@ -1,6 +1,5 @@
 use crate::{
-    domain::models::japanese_word::JapaneseWord,
-    infrastructure::databases::postgres::schema::jp_words,
+    domain::models::jp_word::JpWord, infrastructure::databases::postgres::schema::jp_words,
 };
 
 use chrono::NaiveDateTime;
@@ -9,7 +8,7 @@ use uuid::Uuid;
 
 #[derive(Debug, Clone, Selectable, Queryable, Identifiable)]
 #[diesel(table_name = jp_words)]
-pub struct JapaneseWordDiesel {
+pub struct JpWordDiesel {
     pub id: Uuid,
     pub kanji: Option<String>,
     pub reading: Option<String>,
@@ -18,9 +17,9 @@ pub struct JapaneseWordDiesel {
     pub updated_at: NaiveDateTime,
 }
 
-impl From<JapaneseWordDiesel> for JapaneseWord {
-    fn from(japanese_word_diesel: JapaneseWordDiesel) -> Self {
-        JapaneseWord {
+impl From<JpWordDiesel> for JpWord {
+    fn from(japanese_word_diesel: JpWordDiesel) -> Self {
+        JpWord {
             id: japanese_word_diesel.id,
             kanji: japanese_word_diesel.kanji,
             reading: japanese_word_diesel.reading,
@@ -31,9 +30,9 @@ impl From<JapaneseWordDiesel> for JapaneseWord {
     }
 }
 
-impl From<JapaneseWord> for JapaneseWordDiesel {
-    fn from(japanese_word: JapaneseWord) -> Self {
-        JapaneseWordDiesel {
+impl From<JpWord> for JpWordDiesel {
+    fn from(japanese_word: JpWord) -> Self {
+        JpWordDiesel {
             id: japanese_word.id,
             kanji: japanese_word.kanji,
             reading: japanese_word.reading,

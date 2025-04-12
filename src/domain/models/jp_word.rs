@@ -4,7 +4,7 @@ use uuid::Uuid;
 
 #[allow(non_snake_case)]
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct JapaneseWord {
+pub struct JpWord {
     pub id: Uuid,
     pub kanji: Option<String>,
     pub reading: Option<String>,
