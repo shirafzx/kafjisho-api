@@ -1,1 +1,1 @@
-pub mod japanese_word;
+pub mod jp_word;

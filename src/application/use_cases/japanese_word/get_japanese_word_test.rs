@@ -4,14 +4,14 @@ use anyhow::Result;
 
 use crate::domain::{models::jp_word::JpWord, repositories::jp_word::JpWordRepository};
 
-pub struct GetJapaneseWordUseCase<T>
+pub struct GetJapaneseWordTestUseCase<T>
 where
     T: JpWordRepository + Send + Sync,
 {
     japanese_word_repository: Arc<T>,
 }
 
-impl<T> GetJapaneseWordUseCase<T>
+impl<T> GetJapaneseWordTestUseCase<T>
 where
     T: JpWordRepository + Send + Sync,
 {
@@ -21,7 +21,7 @@ where
         }
     }
 
-    pub async fn get_japanese_word(&self, kanji: String) -> Result<JpWord> {
+    pub async fn get_japanese_word_test(&self, kanji: String) -> Result<JpWord> {
         let result = self.japanese_word_repository.find_by_kanji(kanji).await?;
 
         Ok(result)
