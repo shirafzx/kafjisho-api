@@ -13,7 +13,7 @@ use crate::{
         get_japanese_word::GetJapaneseWordUseCase,
         get_japanese_word_test::GetJapaneseWordTestUseCase,
     },
-    domain::repositories::japanese_word::JapaneseWordRepository,
+    domain::repositories::jp_word::JpWordRepository,
 };
 
 #[derive(Deserialize)]
@@ -27,7 +27,7 @@ pub async fn get_japanese_word<T>(
     Query(params): Query<QueryParams>,
 ) -> impl IntoResponse
 where
-    T: JapaneseWordRepository + Send + Sync,
+    T: JpWordRepository + Send + Sync,
 {
     let test_query_param = params.test.unwrap_or_else(|| "default".to_string());
     println!("{}", test_query_param);
@@ -42,7 +42,7 @@ pub async fn get_japanese_word_test<T>(
     Path(kanji): Path<String>,
 ) -> impl IntoResponse
 where
-    T: JapaneseWordRepository + Send + Sync,
+    T: JpWordRepository + Send + Sync,
 {
     match get_japanese_word_test_use_case
         .get_japanese_word_test(kanji)

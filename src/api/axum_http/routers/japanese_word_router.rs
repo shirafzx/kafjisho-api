@@ -9,12 +9,12 @@ use crate::{
         get_japanese_word_test::GetJapaneseWordTestUseCase,
     },
     infrastructure::databases::postgres::{
-        postgres_connection::PgPool, repositories::japanese_word::JapaneseWordDieselRepository,
+        postgres_connection::PgPool, repositories::jp_word::JpWordDieselRepository,
     },
 };
 
 pub fn routes(db_pool: Arc<PgPool>) -> Router {
-    let japanese_word_repository = JapaneseWordDieselRepository::new(db_pool);
+    let japanese_word_repository = JpWordDieselRepository::new(db_pool);
     let get_japanese_word_use_case =
         GetJapaneseWordUseCase::new(Arc::new(japanese_word_repository.clone()));
     let get_japanese_word_test_use_case =
