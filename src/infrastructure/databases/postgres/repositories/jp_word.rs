@@ -34,7 +34,6 @@ impl JpWordRepository for JpWordDieselRepository {
         let mut conn = Arc::clone(&self.db_pool).get()?;
         let result = jp_words::table
             .filter(jp_words::kanji.eq(kanji))
-            .select(JpWordDiesel::as_select())
             .first::<JpWordDiesel>(&mut conn)
             .map(|v| -> JpWord { v.into() })?;
 

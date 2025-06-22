@@ -1,6 +1,5 @@
-use crate::{
-    domain::models::jp_word::JpWord, infrastructure::databases::postgres::schema::jp_words,
-};
+use crate::domain::models::jp_word::JpWord;
+use crate::infrastructure::databases::postgres::{models::enums::pos::Pos, schema::jp_words};
 
 use chrono::NaiveDateTime;
 use diesel::prelude::*;
@@ -15,30 +14,33 @@ pub struct JpWordDiesel {
     pub furigana: Option<String>,
     pub created_at: NaiveDateTime,
     pub updated_at: NaiveDateTime,
+    pub pos: Pos,
 }
 
 impl From<JpWordDiesel> for JpWord {
-    fn from(japanese_word_diesel: JpWordDiesel) -> Self {
+    fn from(jp_word_diesel: JpWordDiesel) -> Self {
         JpWord {
-            id: japanese_word_diesel.id,
-            kanji: japanese_word_diesel.kanji,
-            reading: japanese_word_diesel.reading,
-            furigana: japanese_word_diesel.furigana,
-            createdAt: japanese_word_diesel.created_at,
-            updatedAt: japanese_word_diesel.updated_at,
+            id: jp_word_diesel.id,
+            kanji: jp_word_diesel.kanji,
+            reading: jp_word_diesel.reading,
+            furigana: jp_word_diesel.furigana,
+            pos: jp_word_diesel.pos,
+            created_at: jp_word_diesel.created_at,
+            updated_at: jp_word_diesel.updated_at,
         }
     }
 }
 
 impl From<JpWord> for JpWordDiesel {
-    fn from(japanese_word: JpWord) -> Self {
+    fn from(jp_word: JpWord) -> Self {
         JpWordDiesel {
-            id: japanese_word.id,
-            kanji: japanese_word.kanji,
-            reading: japanese_word.reading,
-            furigana: japanese_word.furigana,
-            created_at: japanese_word.createdAt,
-            updated_at: japanese_word.updatedAt,
+            id: jp_word.id,
+            kanji: jp_word.kanji,
+            reading: jp_word.reading,
+            furigana: jp_word.furigana,
+            pos: jp_word.pos,
+            created_at: jp_word.created_at,
+            updated_at: jp_word.updated_at,
         }
     }
 }

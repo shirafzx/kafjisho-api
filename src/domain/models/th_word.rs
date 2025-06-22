@@ -4,11 +4,9 @@ use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct JpWord {
+pub struct ThWord {
     pub id: Uuid,
-    pub kanji: Option<String>,
-    pub reading: Option<String>,
-    pub furigana: Option<String>,
+    pub word: Option<String>,
     pub pos: Pos,
     pub created_at: NaiveDateTime,
     pub updated_at: NaiveDateTime,

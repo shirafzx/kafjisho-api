@@ -1,15 +1,13 @@
-use crate::infrastructure::databases::postgres::models::enums::pos::Pos;
 use chrono::NaiveDateTime;
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct JpWord {
+pub struct ThDefinition {
     pub id: Uuid,
-    pub kanji: Option<String>,
-    pub reading: Option<String>,
-    pub furigana: Option<String>,
-    pub pos: Pos,
+    pub th_word_id: Uuid,
+    pub th_definition: Option<String>,
+    pub th_example: Option<String>,
     pub created_at: NaiveDateTime,
     pub updated_at: NaiveDateTime,
 }
