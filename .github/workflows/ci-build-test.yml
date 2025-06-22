@@ -7,7 +7,14 @@ on:
   # branches: ["develop", "main"]
   # types: [opened, synchronize, reopened]
   workflow_dispatch:
-
+    inputs:
+      deploy_environment:
+        description: "select your deploy environment"
+        required: true
+        type: choice
+        options:
+          - "develop"
+          - "production"
 env:
   STAGE: ${{ vars.STAGE }}
   SERVER_PORT: ${{ vars.SERVER_PORT }}
